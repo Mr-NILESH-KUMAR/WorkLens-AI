@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/your-username/enterprise-ai-analytics/main/client/public/logo.png" alt="Worklens AI Logo" width="90" />
+<img src="https://github.com/Mr-NILESH-KUMAR/WorkLens-AI/blob/master/client/public/logo.png" alt="Worklens AI Logo" width="90" />
 
 # Worklens AI
 
