@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/logo.png" alt="Worklens AI Logo" width="90" />
+<img src="https://raw.githubusercontent.com/your-username/enterprise-ai-analytics/main/client/public/logo.png" alt="Worklens AI Logo" width="90" />
 
 # Worklens AI
 
@@ -9,9 +9,12 @@
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-RandomForest-F7931E?style=flat-square&logo=scikit-learn)](https://scikit-learn.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-6366f1?style=flat-square)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-6366f1?style=flat-square)](https://github.com/your-username/enterprise-ai-analytics/blob/main/LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=flat-square&logo=vercel)](https://work-lens-ai-nillu.vercel.app/)
 
 *Predict. Analyze. Adapt.*
+
+### 🔗 [View Live Demo → work-lens-ai-nillu.vercel.app](https://work-lens-ai-nillu.vercel.app/)
 
 </div>
 
@@ -159,12 +162,74 @@ The Random Forest identified these as the most influential factors in determinin
 | ML Engine | Python, FastAPI, scikit-learn |
 | Model | Random Forest Classifier (joblib) |
 | Styling | Tailwind CSS + Glassmorphism dark theme |
+| Deployment | Vercel (Frontend) |
+
+---
+
+## Fix: Logo Not Showing on GitHub
+
+The logo uses a relative path (`public/logo.png`) which only works locally. On GitHub, you need a full raw URL.
+
+**Step 1** — Push your project to GitHub if you haven't already.
+
+**Step 2** — Go to your repository on GitHub, navigate to `client/public/logo.png`, click the file, then click **Raw**. Copy the URL from the browser address bar. It will look like:
+```
+https://raw.githubusercontent.com/your-username/enterprise-ai-analytics/main/client/public/logo.png
+```
+
+**Step 3** — Replace `your-username` and `enterprise-ai-analytics` in the README logo line with your actual GitHub username and repo name:
+```md
+<img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/client/public/logo.png" alt="Worklens AI Logo" width="90" />
+```
+
+**Step 4** — Save, commit, and push the README. The logo will now render correctly on GitHub.
+
+---
+
+## Fix: License Link Showing Error
+
+The `LICENSE` link in the badge points to a file that does not exist yet in your repository.
+
+**Step 1** — In VS Code, go to the root of your project (`/enterprise-ai-analytics/`) and create a new file named exactly `LICENSE` (no extension).
+
+**Step 2** — Paste the following MIT License text into that file, replacing `[year]` and `[your name]`:
+
+```
+MIT License
+
+Copyright (c) 2024 [Your Name]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+**Step 3** — Also replace `your-username` and `enterprise-ai-analytics` in the license badge URL in this README with your actual GitHub username and repo name:
+```md
+[![License: MIT](https://img.shields.io/badge/License-MIT-6366f1?style=flat-square)](https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/LICENSE)
+```
+
+**Step 4** — Commit and push both the `LICENSE` file and the updated `README.md`. The license badge will now link correctly.
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** — see the [LICENSE](https://github.com/your-username/enterprise-ai-analytics/blob/main/LICENSE) file for details.
 
 ---
 
