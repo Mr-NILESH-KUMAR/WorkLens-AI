@@ -121,7 +121,7 @@ const DarkTooltip = ({ active, payload, label }: any) => {
   return (
     <div style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: 8, padding: "8px 12px", fontSize: 12, color: "#e2e8f0" }}>
       {label && <div style={{ marginBottom: 4, color: "#94a3b8" }}>{label}</div>}
-      {payload.map((p, i) => (
+      {payload.map((p: any, i: number) => (
         <div key={i} style={{ color: p.color }}>{p.name}: {p.value}%</div>
       ))}
     </div>
