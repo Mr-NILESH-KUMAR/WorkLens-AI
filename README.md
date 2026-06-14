@@ -3,6 +3,8 @@
 <img src="https://github.com/Mr-NILESH-KUMAR/WorkLens-AI/blob/master/client/public/logo.png" alt="Worklens AI Logo" width="90" />
 
 # Worklens AI
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=flat-square&logo=vercel)](https://work-lens-ai-nillu.vercel.app/)
+
 
 ### Enterprise Workforce Risk Analytics Platform
 
@@ -10,7 +12,6 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-RandomForest-F7931E?style=flat-square&logo=scikit-learn)](https://scikit-learn.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-6366f1?style=flat-square)](https://github.com/your-username/enterprise-ai-analytics/blob/main/LICENSE)
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000000?style=flat-square&logo=vercel)](https://work-lens-ai-nillu.vercel.app/)
 
 *Predict. Analyze. Adapt.*
 
