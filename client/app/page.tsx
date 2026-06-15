@@ -215,7 +215,7 @@ export default function Dashboard() {
         {/* Logo */}
         <div style={{ padding: "16px 14px 12px", borderBottom: `1px solid ${T.cardBorder}` }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <Image src="/logo.png" alt="Worklens AI Logo" width={40} height={40} style={{ objectFit: "contain" }} />
+            <Image src="/logo-icon.png" alt="Worklens AI Logo" width={40} height={40} style={{ objectFit: "contain" }} />
             <div>
               <div style={{ fontSize: 13, fontWeight: 800, background: "linear-gradient(90deg,#6366f1,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Worklens AI</div>
               <div style={{ fontSize: 9, color: T.textMuted, lineHeight: 1.3 }}>Workforce Risk Analytics</div>
@@ -259,9 +259,11 @@ export default function Dashboard() {
               <span style={{ color: T.textPrimary, fontWeight:600 }}>{v}</span>
             </div>
           ))}
-          <div style={{ marginTop: 14, background: "linear-gradient(135deg,#1e1b4b,#312e81)", borderRadius: 10, padding: "12px 10px", textAlign:"center" }}>
-            <Image src="/logo.png" alt="logo" width={48} height={48} style={{ objectFit:"contain", marginBottom:6 }} />
-            <div style={{ fontSize:10, color:"#a5b4fc", lineHeight:1.4 }}>AI is transforming the future of work. Analyze. Adapt. Grow.</div>
+          <div style={{ marginTop: 14 }}>
+            <Image src="/logo.png" alt="logo" width={210} height={80} style={{ objectFit:"contain", width:"100%", height:"auto", marginBottom:8, display:"block", borderRadius:14 }} />
+            <div style={{ background: "linear-gradient(135deg,#1e1b4b,#312e81)", borderRadius: 10, padding: "12px 10px", textAlign:"center" }}>
+              <div style={{ fontSize:10, color:"#a5b4fc", lineHeight:1.4 }}>AI is transforming the future of work. Analyze. Adapt. Grow.</div>
+            </div>
           </div>
         </div>
       </aside>

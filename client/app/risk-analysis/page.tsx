@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
@@ -147,7 +148,7 @@ export default function RiskAnalysis() {
 
         <div style={{ padding: "16px 14px 12px", borderBottom: `1px solid ${T.cardBorder}` }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ width: 40, height: 40, borderRadius: 10, background: "linear-gradient(135deg,#6366f1,#a855f7)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, fontWeight: 800, color: "#fff", flexShrink: 0 }}>W</div>
+            <Image src="/logo-icon.png" alt="Worklens AI Logo" width={40} height={40} style={{ objectFit: "contain" }} />
             <div>
               <div style={{ fontSize: 13, fontWeight: 800, background: "linear-gradient(90deg,#6366f1,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Worklens AI</div>
               <div style={{ fontSize: 9, color: T.textMuted, lineHeight: 1.3 }}>Workforce Risk Analytics</div>
@@ -188,6 +189,12 @@ export default function RiskAnalysis() {
               <span style={{ color: T.textPrimary, fontWeight:600 }}>{v}</span>
             </div>
           ))}
+          <div style={{ marginTop: 14 }}>
+            <Image src="/logo.png" alt="logo" width={210} height={80} style={{ objectFit:"contain", width:"100%", height:"auto", marginBottom:8, display:"block", borderRadius:14 }} />
+            <div style={{ background: "linear-gradient(135deg,#1e1b4b,#312e81)", borderRadius: 10, padding: "12px 10px", textAlign:"center" }}>
+              <div style={{ fontSize:10, color:"#a5b4fc", lineHeight:1.4 }}>AI is transforming the future of work. Analyze. Adapt. Grow.</div>
+            </div>
+          </div>
         </div>
       </aside>
 
@@ -238,6 +245,42 @@ export default function RiskAnalysis() {
 
         {/* ── CONTENT ── */}
         <div style={{ padding:"16px 20px", display:"flex", flexDirection:"column", gap:16, flex:1 }}>
+
+          {/* ── KPI SUMMARY ROW ── */}
+          <div style={{ display: "flex", gap: 12 }}>
+            {[
+              { icon: "⚠️", label: "High Risk Employees", value: "6,797", sub: "33.99% of 20,000 total", bg: "linear-gradient(135deg,#ef4444,#f87171)" },
+              { icon: "🎓", label: "Highest Risk Education", value: "High School", sub: "45.6% high risk", bg: "linear-gradient(135deg,#f97316,#fb923c)" },
+              { icon: "🧑‍💼", label: "Highest Risk Job Level", value: "Entry Level", sub: "44.5% high risk", bg: "linear-gradient(135deg,#eab308,#fde047)" },
+              { icon: "🏭", label: "Riskiest Role / Industry", value: "Operator (Mfg.)", sub: "50.2% high risk", bg: "linear-gradient(135deg,#a855f7,#c084fc)" },
+              { icon: "📘", label: "Training Hours Gap", value: "20.2 vs 6.0 hrs", sub: "High risk vs Low risk avg", bg: "linear-gradient(135deg,#3b82f6,#60a5fa)" },
+            ].map((kpi, i) => {
+              const [hovered, setHovered] = useState(false);
+              return (
+                <div
+                  key={i}
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
+                  style={{
+                    flex: 1, background: hovered ? (dark ? "rgba(99,102,241,0.12)" : "rgba(99,102,241,0.08)") : T.cardBg,
+                    border: `1px solid ${hovered ? "#6366f1" : T.cardBorder}`,
+                    borderRadius: 14, padding: "14px 16px",
+                    transform: hovered ? "translateY(-4px)" : "translateY(0)",
+                    transition: "all 0.25s ease",
+                    boxShadow: hovered ? "0 12px 32px rgba(99,102,241,0.25)" : "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: "50%", background: kpi.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>{kpi.icon}</div>
+                    <span style={{ fontSize: 10, color: T.textMuted, textTransform: "uppercase", letterSpacing: 1 }}>{kpi.label}</span>
+                  </div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: T.textPrimary, lineHeight: 1.2 }}>{kpi.value}</div>
+                  <div style={{ fontSize: 11, color: T.textMuted, marginTop: 4 }}>{kpi.sub}</div>
+                </div>
+              );
+            })}
+          </div>
 
           {/* ── ROW 1 ── */}
           <div style={{ display:"flex", gap:12, minHeight:280 }}>

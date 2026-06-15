@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, RadarChart, Radar, PolarGrid,
@@ -49,16 +50,16 @@ const industryMetrics = [
 ];
 
 const navItems = [
-  { label: "Dashboard",              icon: "⊞" },
-  { label: "Risk Analysis",          icon: "⚠" },
-  { label: "Industry Insights",      icon: "🏭", active: true },
-  { label: "Job Role Insights",      icon: "👤" },
-  { label: "AI Adoption Analysis",   icon: "🤖" },
-  { label: "Skills & Protection",    icon: "🛡" },
-  { label: "Risk Predictor",         icon: "🔮", badge: "New" },
-  { label: "Career Recommendations", icon: "🎯" },
-  { label: "Reports",                icon: "📊" },
-  { label: "About Dataset",          icon: "ℹ" },
+  { label: "Dashboard",              icon: "⊞", route: "/" },
+  { label: "Risk Analysis",          icon: "⚠", route: "/risk-analysis" },
+  { label: "Industry Insights",      icon: "🏭", route: "/industry-insights", active: true },
+  { label: "Job Role Insights",      icon: "👤", route: "/job-role-insights" },
+  { label: "AI Adoption Analysis",   icon: "🤖", route: "/ai-adoption-analysis" },
+  { label: "Skills & Protection",    icon: "🛡", route: "/skills-protection" },
+  { label: "Risk Predictor",         icon: "🔮", badge: "New", route: "/risk-predictor" },
+  { label: "Career Recommendations", icon: "🎯", route: "/career-recommendations" },
+  { label: "Reports",                icon: "📊", route: "/reports" },
+  { label: "About Dataset",          icon: "ℹ", route: "/about" },
 ];
 
 const INDUSTRY_COLORS: Record<string, string> = {
@@ -83,6 +84,7 @@ const DarkTooltip = ({ active, payload, label }: any) => {
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
 export default function IndustryInsights() {
+  const router = useRouter();
   const [activeNav, setActiveNav] = useState("Industry Insights");
   const [dark, setDark] = useState(true);
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
@@ -144,7 +146,7 @@ export default function IndustryInsights() {
         {/* Logo */}
         <div style={{ padding: "16px 14px 12px", borderBottom: `1px solid ${T.cardBorder}` }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <Image src="/logo.png" alt="Worklens AI Logo" width={40} height={40} style={{ objectFit: "contain" }} />
+            <Image src="/logo-icon.png" alt="Worklens AI Logo" width={40} height={40} style={{ objectFit: "contain" }} />
             <div>
               <div style={{ fontSize: 13, fontWeight: 800, background: "linear-gradient(90deg,#6366f1,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Worklens AI</div>
               <div style={{ fontSize: 9, color: T.textMuted, lineHeight: 1.3 }}>Workforce Risk Analytics</div>
@@ -157,7 +159,7 @@ export default function IndustryInsights() {
           {navItems.map(item => {
             const isActive = activeNav === item.label;
             return (
-              <button key={item.label} onClick={() => setActiveNav(item.label)} style={{
+              <button key={item.label} onClick={() => { setActiveNav(item.label); router.push(item.route); }} style={{
                 display: "flex", alignItems: "center", gap: 9, width: "100%",
                 padding: "9px 10px", borderRadius: 9, border: "none", cursor: "pointer",
                 background: isActive ? "linear-gradient(90deg,#6366f1,#8b5cf6)" : "transparent",
@@ -186,9 +188,11 @@ export default function IndustryInsights() {
               <span style={{ color: T.textPrimary, fontWeight: 600 }}>{v}</span>
             </div>
           ))}
-          <div style={{ marginTop: 14, background: "linear-gradient(135deg,#1e1b4b,#312e81)", borderRadius: 10, padding: "12px 10px", textAlign: "center" }}>
-            <Image src="/logo.png" alt="logo" width={48} height={48} style={{ objectFit: "contain", marginBottom: 6 }} />
-            <div style={{ fontSize: 10, color: "#a5b4fc", lineHeight: 1.4 }}>AI is transforming the future of work. Analyze. Adapt. Grow.</div>
+          <div style={{ marginTop: 14 }}>
+            <Image src="/logo.png" alt="logo" width={210} height={80} style={{ objectFit: "contain", width: "100%", height: "auto", marginBottom: 8, display: "block", borderRadius: 14 }} />
+            <div style={{ background: "linear-gradient(135deg,#1e1b4b,#312e81)", borderRadius: 10, padding: "12px 10px", textAlign: "center" }}>
+              <div style={{ fontSize: 10, color: "#a5b4fc", lineHeight: 1.4 }}>AI is transforming the future of work. Analyze. Adapt. Grow.</div>
+            </div>
           </div>
         </div>
       </aside>
