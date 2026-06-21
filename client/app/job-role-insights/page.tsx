@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
@@ -41,25 +43,25 @@ const jobRoleData = [
 const sortedByRisk = [...jobRoleData].sort((a, b) => b.high - a.high);
 
 const navItems = [
-  { label: "Dashboard",             icon: "⊞" },
-  { label: "Risk Analysis",         icon: "⚠" },
-  { label: "Industry Insights",     icon: "🏭" },
-  { label: "Job Role Insights",     icon: "👤", active: true },
-  { label: "AI Adoption Analysis",  icon: "🤖" },
-  { label: "Skills & Protection",   icon: "🛡" },
-  { label: "Risk Predictor",        icon: "🔮", badge: "New" },
-  { label: "Career Recommendations",icon: "🎯" },
-  { label: "Reports",               icon: "📊" },
-  { label: "About Dataset",         icon: "ℹ" },
+  { label: "Dashboard",             icon: "⊞", href: "/" },
+  { label: "Risk Analysis",         icon: "⚠", href: "/risk-analysis" },
+  { label: "Industry Insights",     icon: "🏭", href: "/industry-insights" },
+  { label: "Job Role Insights",     icon: "👤", href: "/job-role-insights" },
+  { label: "AI Adoption Analysis",  icon: "🤖", href: "/ai-adoption-analysis" },
+  { label: "Skills & Protection",   icon: "🛡", href: "/skills-protection" },
+  { label: "Risk Predictor",        icon: "🔮", href: "/risk-predictor", badge: "New" },
+  { label: "Career Recommendations",icon: "🎯", href: "/career-recommendations" },
+  { label: "Reports",               icon: "📊", href: "/reports" },
+  { label: "About Dataset",         icon: "ℹ", href: "/about" },
 ];
 
 // ── DARK TOOLTIP ──────────────────────────────────────────────────────────────
-const DarkTooltip = ({ active, payload, label }) => {
+const DarkTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: 8, padding: "8px 12px", fontSize: 12, color: "#e2e8f0" }}>
       {label && <div style={{ marginBottom: 4, color: "#94a3b8" }}>{label}</div>}
-      {payload.map((p, i) => (
+      {payload.map((p: any, i: number) => (
         <div key={i} style={{ color: p.color }}>{p.name}: {p.value}{typeof p.value === "number" && p.unit !== "" ? p.unit ?? "%" : ""}</div>
       ))}
     </div>
@@ -71,6 +73,7 @@ export default function JobRoleInsights() {
   const [dark, setDark] = useState(true);
   const [selectedRole, setSelectedRole] = useState("Operator");
   const [search, setSearch] = useState("");
+  const pathname = usePathname();
 
   const bg      = dark ? "#0B0F19" : "#f1f5f9";
   const sidebar  = dark ? "#0d1220" : "#ffffff";
@@ -118,19 +121,19 @@ export default function JobRoleInsights() {
     { metric: "AI Tools (x25)", value: Math.min(current.aiTools * 25, 100) },
   ];
 
-  function riskColor(pct) {
+  function riskColor(pct: number) {
     if (pct >= 40) return "#ef4444";
     if (pct >= 25) return "#f97316";
     return "#22c55e";
   }
-  function riskLabel(pct) {
+  function riskLabel(pct: number) {
     if (pct >= 40) return "High";
     if (pct >= 25) return "Medium";
     return "Low";
   }
 
   // ── GLASS CARD ───────────────────────────────────────────────────────────
-  function Card({ title, children, style = {}, hoverable = false }) {
+  function Card({ title, children, style = {}, hoverable = false }: any) {
     const [hovered, setHovered] = useState(false);
     return (
       <div
@@ -155,7 +158,7 @@ export default function JobRoleInsights() {
   }
 
   // ── KPI CARD ─────────────────────────────────────────────────────────────
-  function KpiCard({ icon, iconBg, label, value, sub }) {
+  function KpiCard({ icon, iconBg, label, value, sub }: any) {
     const [hovered, setHovered] = useState(false);
     return (
       <div
@@ -192,7 +195,7 @@ export default function JobRoleInsights() {
         {/* Logo */}
         <div style={{ padding: "16px 14px 12px", borderBottom: `1px solid ${T.cardBorder}` }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <Image src="/logo.png" alt="Worklens AI Logo" width={40} height={40} style={{ objectFit: "contain" }} />
+            <Image src="/logo-icon.png" alt="Worklens AI Logo" width={40} height={40} style={{ objectFit: "contain" }} />
             <div>
               <div style={{ fontSize: 13, fontWeight: 800, background: "linear-gradient(90deg,#6366f1,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Worklens AI</div>
               <div style={{ fontSize: 9, color: T.textMuted, lineHeight: 1.3 }}>Workforce Risk Analytics</div>
@@ -203,15 +206,16 @@ export default function JobRoleInsights() {
         {/* Nav */}
         <nav style={{ flex: 1, padding: "10px 8px", overflowY: "auto" }}>
           {navItems.map(item => {
-            const isActive = item.active;
+            const isActive = pathname === item.href;
             return (
-              <button key={item.label} style={{
+              <Link key={item.label} href={item.href} style={{
                 display: "flex", alignItems: "center", gap: 9, width: "100%",
                 padding: "9px 10px", borderRadius: 9, border: "none", cursor: "pointer",
                 background: isActive ? "linear-gradient(90deg,#6366f1,#8b5cf6)" : "transparent",
                 color: isActive ? "#fff" : T.textMuted,
                 fontSize: 12, fontWeight: isActive ? 600 : 400,
                 marginBottom: 2, textAlign: "left",
+                textDecoration: "none",
                 transition: "all 0.15s ease",
               }}
               onMouseEnter={e => { if (!isActive) { e.currentTarget.style.background = dark ? "rgba(99,102,241,0.1)" : "rgba(99,102,241,0.08)"; e.currentTarget.style.color = "#6366f1"; } }}
@@ -220,7 +224,7 @@ export default function JobRoleInsights() {
                 <span style={{ fontSize: 15 }}>{item.icon}</span>
                 <span style={{ flex: 1 }}>{item.label}</span>
                 {item.badge && <span style={{ fontSize: 9, background: "#6366f1", color: "#fff", borderRadius: 4, padding: "1px 5px" }}>{item.badge}</span>}
-              </button>
+              </Link>
             );
           })}
         </nav>
@@ -234,9 +238,11 @@ export default function JobRoleInsights() {
               <span style={{ color: T.textPrimary, fontWeight:600 }}>{v}</span>
             </div>
           ))}
-          <div style={{ marginTop: 14, background: "linear-gradient(135deg,#1e1b4b,#312e81)", borderRadius: 10, padding: "12px 10px", textAlign:"center" }}>
-            <Image src="/logo.png" alt="logo" width={48} height={48} style={{ objectFit:"contain", marginBottom:6 }} />
-            <div style={{ fontSize:10, color:"#a5b4fc", lineHeight:1.4 }}>AI is transforming the future of work. Analyze. Adapt. Grow.</div>
+          <div style={{ marginTop: 14 }}>
+            <Image src="/logo.png" alt="logo" width={210} height={80} style={{ objectFit:"contain", width:"100%", height:"auto", marginBottom:8, display:"block", borderRadius:14 }} />
+            <div style={{ background: "linear-gradient(135deg,#1e1b4b,#312e81)", borderRadius: 10, padding: "12px 10px", textAlign:"center" }}>
+              <div style={{ fontSize:10, color:"#a5b4fc", lineHeight:1.4 }}>AI is transforming the future of work. Analyze. Adapt. Grow.</div>
+            </div>
           </div>
         </div>
       </aside>
