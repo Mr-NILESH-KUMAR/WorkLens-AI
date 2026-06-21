@@ -31,3 +31,12 @@ def predict_risk(emp: EmployeeReq):
     confidence = {model.classes_[i]: round(p * 100, 2) for i, p in enumerate(probs)}
     
     return {"risk_level": prediction, "confidence": confidence}
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
